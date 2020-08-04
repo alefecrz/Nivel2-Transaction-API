@@ -53,7 +53,7 @@ transactionsRouter.delete('/:id', async (request, response) => {
   }
 });
 
-transactionsRouter.post('/import', upload.single('docs'), async (request, response) => {
+transactionsRouter.post('/import', upload.single('file'), async (request, response) => {
    const documentName = request.file.filename;
 
    const importTransactionService = new ImportTransactionsService();
