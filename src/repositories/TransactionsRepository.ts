@@ -26,10 +26,13 @@ class TransactionsRepository extends Repository<Transaction> {
   }
   public async getBalance(): Promise<IData> {
 
-    const transactions = await this
-    .createQueryBuilder('transactions')
-    .leftJoinAndSelect('transactions.categories', 'categories')
-    .getMany();
+    // const transactions = await this
+    // .createQueryBuilder('transactions')
+    // .leftJoinAndSelect('transactions.categories', 'categories')
+    // .getMany();
+
+    // Usando eager typeorm
+    const transactions = await this.find();
 
     const income = this.sumValuesByType(transactions, 'income');
     const outcome = this.sumValuesByType(transactions, 'outcome');
